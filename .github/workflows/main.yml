@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
+
     - name: Get Composer Cache Directory
       id: composer-cache
       run: |
@@ -24,7 +26,7 @@ jobs:
     - name: Install dependencies
       run: |
         composer install -o -q
-    - uses: actions/checkout@v2
+        
     - name: Zip Folder
       run: zip -r release.zip . -x ".git/*" ".github/*" ".phpcs.xml"
     - name: Release to Github
